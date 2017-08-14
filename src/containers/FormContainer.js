@@ -23,8 +23,8 @@ class FormContainer extends Component {
     this.handleInputChange = this.handleInputChange.bind(this)
     this.validateInputChange = this.validateInputChange.bind(this)
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
-    this.handleStateSelection = this.handleStateSelection.bind(this);
-    this.validateStateSelection = this.validateStateSelection.bind(this);
+    // this.handleStateSelection = this.handleStateSelection.bind(this);
+    // this.validateStateSelection = this.validateStateSelection.bind(this);
   }
 
   handleClearForm(event) {
@@ -48,7 +48,8 @@ class FormContainer extends Component {
     this.validateInputChange(this.state.lastName, 'lastName') &&
     this.validateInputChange(this.state.address, 'address') &&
     this.validateInputChange(this.state.city, 'city') &&
-    this.validateStateSelection(this.state.stateSelected) &&
+    this.validateInputChange(this.state.stateSelected, 'stateSelected') &&
+    // this.validateStateSelection(this.state.stateSelected) &&
     this.validateInputChange(this.state.zipcode, 'zipCode') &&
     this.validateInputChange(this.state.phoneNumber, 'phoneNumber') &&
     this.validateInputChange(this.state.email, 'email'))
@@ -83,24 +84,6 @@ class FormContainer extends Component {
       let errorState = this.state.errors
       delete errorState[[name]]
       this.setState({errors: errorState })
-      return true
-    }
-  }
-
-  handleStateSelection(event) {
-    this.validateStateSelection(event.target.value)
-    this.setState({ stateSelected: event.target.value })
-  }
-
-  validateStateSelection(selection) {
-    if (selection === '') {
-      let newError = { stateSelected: 'You must select a STATE.' }
-      this.setState({ errors: Object.assign(this.state.errors, newError) })
-      return false
-    } else {
-      let errorState = this.state.errors
-      delete errorState.stateSelected
-      this.setState({ errors: errorState })
       return true
     }
   }
@@ -142,8 +125,8 @@ class FormContainer extends Component {
           handlerFunction={this.handleInputChange}
         />
         <Select
-          handlerFunction={this.handleStateSelection}
-          name='state'
+          handlerFunction={this.handleInputChange}
+          name='stateSelected'
           label='State'
           options={this.state.states}
           selectedOption={this.state.stateSelected}
