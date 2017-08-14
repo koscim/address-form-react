@@ -3,7 +3,7 @@ import React from 'react';
 const AddressList = props => {
   let addressItems = props.addressForm.map(address => {
     return(
-      <li key={address.firstName}>
+      <li key={Math.random()}>
         <strong>
           {address.firstName} {address.lastName}
         </strong>
